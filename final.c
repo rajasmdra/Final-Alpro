@@ -57,6 +57,27 @@ void cekStok(struct produk prod[]) {
         printf("%-7d %-23s %d\n", i + 11, prod[i + 10].nama, prod[i + 10].stok);
     }
 }
+void tambahStok(struct produk prod[], int *update, int *barang, int *stokBaru) {
+    *barang = 0;
+    printf("\nApakah anda ingin menambah stok? (Masukkan 1 jika YA): ");
+    scanf("%d", update);
+
+    if (*update == 1) {
+        while (*barang < 1 || *barang > MAX) {
+            printf("Pilih produk: ");
+            scanf("%d", barang);
+
+            if (*barang < 1 || *barang > MAX) {
+                printf("Input tidak valid, silahkan coba lagi.\n");
+            }
+        }
+        printf("Tambahkan stok: ");
+        scanf("%d", stokBaru);
+
+        prod[*barang - 1].stok += *stokBaru;
+        printf("\nStok %s diperbarui: %d", prod[*barang - 1].nama, prod[*barang - 1].stok);
+    }
+}
 void rekap(struct produk prod[], int *totalRekap, int *rekapDiskon) {
     *totalRekap = 0;
     printf("\nREKAP PENJUALAN\n\n");
@@ -215,7 +236,7 @@ void konfirPembayaran (int *uang, int *total, int *pembayaran, int *diskon) {
         *uang = *total - *diskon;
     }
 }
-void tampilkanMetode (int *pembayaran, int *uang, int *total) {
+void pembayaran_kembalian (int *pembayaran, int *uang, int *total, int *diskon) {
     if (*pembayaran == 1) {
         printf("\nTUNAI\t\t\t\t: Rp. %d", *uang);
     }
@@ -225,6 +246,7 @@ void tampilkanMetode (int *pembayaran, int *uang, int *total) {
     else if (*pembayaran == 3) {
         printf("\nKREDIT\t\t\t\t: Rp. %d", *total);
     }
+    printf("\nKEMBALI\t\t\t\t: Rp. %d\n", *uang - (*total - *diskon));
 }
 void tampilkanJam () {
     struct tm *jam;
@@ -246,10 +268,9 @@ void cetakStruk (struct produk prod[], int *total, int *uang, int *pembayaran, i
     printf("KASIR\t: %s\n", kasir);
     printf("---------------------------------------------");
     totalPesanan (prod, total, diskon);
-    tampilkanMetode(pembayaran, uang, total);
-    printf("\nKEMBALI\t\t\t\t: Rp. %d\n", *uang - (*total - *diskon));
+    pembayaran_kembalian(pembayaran, uang, total, diskon);
     printf("---------------------------------------------\n");
-    printf("  TERIMA KASIH TELAH BERBELANJA DI DUROMART\n");
+    printf("  TERIMA KASIH TELAH BERBELANJA DI DUROMART  ");
 
     for (int i = 0; i < MAX; i++) {
         prod[i].pesan = 0;
@@ -258,18 +279,20 @@ void cetakStruk (struct produk prod[], int *total, int *uang, int *pembayaran, i
 }
 
 int main() {
+    int program = 1;
+    char kasir[20];
     int barang;
     int jumlah;
     int total;
-    int program = 1;
-    int totalRekap;
+    int diskon;
     int hapus;
     int pembayaran;
-    int diskon;
     int uang;
+    int update;
+    int stokBaru;
+    int totalRekap;
     int rekapDiskon = 181100;
-    char kasir[20];
-
+    
     struct produk prod[MAX];
     listProduk(prod);
 
@@ -312,15 +335,16 @@ int main() {
         } 
         else if (menu == 2) {
             cekStok(prod);
+            tambahStok(prod, &update, &barang, &stokBaru);
         } 
         else if (menu == 3) {
             rekap(prod, &totalRekap, &rekapDiskon);
         }
 
-        printf("\nKembali ke menu utama? (Masukkan 1 jika YA): ");
+        printf("\n\nKembali ke menu utama? (Masukkan 1 jika YA): ");
         scanf("%d", &program);
     }
 
-    printf("Terima kasih telah menggunakan Duromart!\n");
+    printf("\nTerima kasih telah menggunakan Duromart!\n");
     return 0;
 }
