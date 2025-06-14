@@ -13,26 +13,33 @@ struct produk {
 };
 
 void listProduk(struct produk prod[]) {
-    strcpy(prod[0].nama, "Beras 5kg");          prod[0].harga = 68000;  prod[0].stok = 30;   prod[0].pesan = 0;  prod[0].terjual = 10;  
-    strcpy(prod[1].nama, "Minyak Goreng 1L");   prod[1].harga = 18500;  prod[1].stok = 25;   prod[1].pesan = 0;  prod[1].terjual = 12;    
-    strcpy(prod[2].nama, "Gula Pasir 1kg");     prod[2].harga = 16000;  prod[2].stok = 35;   prod[2].pesan = 0;  prod[2].terjual = 10;    
-    strcpy(prod[3].nama, "Garam 500gr");        prod[3].harga = 4000;   prod[3].stok = 40;   prod[3].pesan = 0;  prod[3].terjual = 18;    
-    strcpy(prod[4].nama, "Tepung Terigu 1kg");  prod[4].harga = 12000;  prod[4].stok = 30;   prod[4].pesan = 0;  prod[4].terjual = 14;    
-    strcpy(prod[5].nama, "Telur 1/2 lusin");    prod[5].harga = 12000;  prod[5].stok = 50;   prod[5].pesan = 0;  prod[5].terjual = 25;    
-    strcpy(prod[6].nama, "Kecap Manis");        prod[6].harga = 10000;  prod[6].stok = 20;   prod[6].pesan = 0;  prod[6].terjual = 8;    
-    strcpy(prod[7].nama, "Saus Sambal");        prod[7].harga = 9000;   prod[7].stok = 18;   prod[7].pesan = 0;  prod[7].terjual = 7;    
-    strcpy(prod[8].nama, "Mie Instan");         prod[8].harga = 3000;   prod[8].stok = 60;   prod[8].pesan = 0;  prod[8].terjual = 45;    
-    strcpy(prod[9].nama, "Kopi Sachet");        prod[9].harga = 2500;   prod[9].stok = 90;   prod[9].pesan = 0;  prod[9].terjual = 65;     
-    strcpy(prod[10].nama, "Teh Celup");         prod[10].harga = 9000;  prod[10].stok = 55;  prod[10].pesan = 0; prod[10].terjual = 35;   
-    strcpy(prod[11].nama, "Air Mineral 600ml"); prod[11].harga = 3500;  prod[11].stok = 100; prod[11].pesan = 0; prod[11].terjual = 75;   
-    strcpy(prod[12].nama, "Air Mineral 1.5L");  prod[12].harga = 6000;  prod[12].stok = 90;  prod[12].pesan = 0; prod[12].terjual = 65;   
-    strcpy(prod[13].nama, "Susu UHT 1L");       prod[13].harga = 17000; prod[13].stok = 40;  prod[13].pesan = 0; prod[13].terjual = 20;   
-    strcpy(prod[14].nama, "Susu Kental Manis"); prod[14].harga = 12000; prod[14].stok = 25;  prod[14].pesan = 0; prod[14].terjual = 12;   
-    strcpy(prod[15].nama, "Pasta Gigi");        prod[15].harga = 9000;  prod[15].stok = 35;  prod[15].pesan = 0; prod[15].terjual = 18;   
-    strcpy(prod[16].nama, "Sikat Gigi");        prod[16].harga = 6000;  prod[16].stok = 40;  prod[16].pesan = 0; prod[16].terjual = 20;   
-    strcpy(prod[17].nama, "Shampoo");           prod[17].harga = 16000; prod[17].stok = 30;  prod[17].pesan = 0; prod[17].terjual = 15;   
-    strcpy(prod[18].nama, "Sabun Cuci Piring"); prod[18].harga = 13000; prod[18].stok = 45;  prod[18].pesan = 0; prod[18].terjual = 30;   
-    strcpy(prod[19].nama, "Sabun Mandi");       prod[19].harga = 3500;  prod[19].stok = 55;  prod[19].pesan = 0; prod[19].terjual = 35;   
+    struct produk data[] = {
+        //NAMA                 HARGA   STOK   PESAN   TERJUAL
+        {"Beras 5kg",          68000,   30,     0,      0},
+        {"Minyak Goreng 1L",   18500,   25,     0,      0},  
+        {"Gula Pasir 1kg",     16000,   35,     0,      0},   
+        {"Garam 500gr",        4000,    40,     0,      0},   
+        {"Tepung Terigu 1kg",  12000,   30,     0,      0},   
+        {"Telur 1/2 lusin",    12000,   50,     0,      0},   
+        {"Kecap Manis",        10000,   20,     0,      0},  
+        {"Saus Sambal",        9000,    18,     0,      0},  
+        {"Mie Instan",         3000,    60,     0,      0},   
+        {"Kopi Sachet",        2500,    90,     0,      0},    
+        {"Teh Celup Isi 30",   9000,    55,     0,      0},   
+        {"Air Mineral 600ml",  3500,    100,    0,      0},   
+        {"Air Mineral 1.5L",   6000,    90,     0,      0},   
+        {"Susu UHT 1L",        17000,   40,     0,      0},   
+        {"Susu Kental Manis",  12000,   25,     0,      0},   
+        {"Pasta Gigi",         9000,    35,     0,      0},   
+        {"Sikat Gigi",         6000,    40,     0,      0},   
+        {"Shampoo",            16000,   30,     0,      0},   
+        {"Sabun Cuci Piring",  13000,   45,     0,      0}, 
+        {"Sabun Mandi",        3500,    55,     0,      0}
+    };
+
+    for (int i = 0; i < MAX; i++) {
+        prod[i] = data[i];
+    }
 }
 void tampilkanMenu(int *menu) {
     printf("\nSELAMAT DATANG DI DUROMART\n\n");
@@ -182,20 +189,32 @@ void beliLagi(int *tambah) {
         }
     }
 } 
-void hapusProduk(struct produk prod[], int *hapus) {
+void hapusProduk(struct produk prod[], int *hapus, int *jumlahHapus) {
     *hapus = 0;
+    *jumlahHapus = 0;
     while (*hapus < 1 || *hapus > MAX) {
         printf("Pilih produk yang ingin dihapus: ");
         scanf("%d", hapus);
 
-        if (*hapus < 1 || *hapus > MAX) {
+        if (*hapus < 1 || *hapus > MAX || prod[*hapus - 1].pesan == 0) {
             printf("Input tidak valid, silahkan coba lagi.\n");
+            *hapus = 0;
         }
     }
 
-    prod[*hapus - 1].stok += prod[*hapus - 1].pesan;
-    prod[*hapus - 1].terjual -= prod[*hapus - 1].pesan;
-    prod[*hapus - 1].pesan = 0;
+    *hapus -= 1;
+    while (*jumlahHapus < 1 || *jumlahHapus > prod[*hapus].pesan) {
+        printf("Masukkan jumlah produk yang ingin dihapus: ");
+        scanf("%d", jumlahHapus);
+
+        if (*jumlahHapus < 1 || *jumlahHapus >  prod[*hapus].pesan) {
+            printf("Input melebihi pesanan, silahkan coba lagi.\n");
+        }
+    }
+
+    prod[*hapus].stok += *jumlahHapus;
+    prod[*hapus].terjual -= *jumlahHapus;
+    prod[*hapus].pesan -= *jumlahHapus;
 }
 void metodePembayaran (int *pembayaran) {
     *pembayaran = 0;
@@ -270,7 +289,7 @@ void cetakStruk (struct produk prod[], int *total, int *uang, int *pembayaran, i
     totalPesanan (prod, total, diskon);
     pembayaran_kembalian(pembayaran, uang, total, diskon);
     printf("---------------------------------------------\n");
-    printf("  TERIMA KASIH TELAH BERBELANJA DI DUROMART  ");
+    printf("  TERIMA KASIH TELAH BERBELANJA DI DUROMART  \n");
 
     for (int i = 0; i < MAX; i++) {
         prod[i].pesan = 0;
@@ -286,12 +305,13 @@ int main() {
     int total;
     int diskon;
     int hapus;
+    int jumlahHapus;
     int pembayaran;
     int uang;
     int update;
     int stokBaru;
     int totalRekap;
-    int rekapDiskon = 181100;
+    int rekapDiskon = 0;
     
     struct produk prod[MAX];
     listProduk(prod);
@@ -321,7 +341,7 @@ int main() {
                     totalPesanan(prod, &total, &diskon);
                 }
                 else if (tambah == 2) {
-                    hapusProduk(prod, &hapus);
+                    hapusProduk(prod, &hapus, &jumlahHapus);
                     hitungDiskon (prod, &total, &diskon);
                     totalPesanan(prod, &total, &diskon);
                     tambah = 1;
@@ -341,7 +361,7 @@ int main() {
             rekap(prod, &totalRekap, &rekapDiskon);
         }
 
-        printf("\n\nKembali ke menu utama? (Masukkan 1 jika YA): ");
+        printf("\nKembali ke menu utama? (Masukkan 1 jika YA): ");
         scanf("%d", &program);
     }
 
