@@ -1,1 +1,1 @@
-.pesan
+detailPesana
