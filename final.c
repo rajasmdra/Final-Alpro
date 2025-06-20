@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 #include <time.h>
 
 #define MAX 20
@@ -15,28 +14,28 @@ struct produk {
 void listProduk(struct produk prod[]) {
     struct produk data[] = {
         //NAMA                 HARGA   STOK   PESAN   TERJUAL
-        {"Beras 5kg",          68000,   30,     0,      0},
-        {"Minyak Goreng 1L",   18500,   25,     0,      0},  
-        {"Gula Pasir 1kg",     16000,   35,     0,      0},   
-        {"Garam 500gr",        4000,    40,     0,      0},   
-        {"Tepung Terigu 1kg",  12000,   30,     0,      0},   
-        {"Telur 1/2 lusin",    12000,   50,     0,      0},   
-        {"Kecap Manis",        10000,   20,     0,      0},  
-        {"Saus Sambal",        9000,    18,     0,      0},  
-        {"Mie Instan",         3000,    60,     0,      0},   
-        {"Kopi Sachet",        2500,    90,     0,      0},    
-        {"Teh Celup Isi 30",   9000,    55,     0,      0},   
-        {"Air Mineral 600ml",  3500,    100,    0,      0},   
-        {"Air Mineral 1.5L",   6000,    90,     0,      0},   
-        {"Susu UHT 1L",        17000,   40,     0,      0},   
-        {"Susu Kental Manis",  12000,   25,     0,      0},   
-        {"Pasta Gigi",         9000,    35,     0,      0},   
-        {"Sikat Gigi",         6000,    40,     0,      0},   
-        {"Shampoo",            16000,   30,     0,      0},   
-        {"Sabun Cuci Piring",  13000,   45,     0,      0}, 
-        {"Sabun Mandi",        3500,    55,     0,      0}
-    };
-
+        {"Beras 5kg",          68000,   30,     0,       0},
+        {"Minyak Goreng 1L",   18500,   25,     0,       0},
+        {"Gula Pasir 1kg",     16000,   35,     0,       0},
+        {"Garam 500gr",        4000,    40,     0,       0},
+        {"Tepung Terigu 1kg",  12000,   30,     0,       0},
+        {"Telur 1/2 lusin",    12000,   50,     0,       0},
+        {"Kecap Manis",        10000,   20,     0,       0},
+        {"Saus Sambal",        9000,    18,     0,       0},
+        {"Mie Instan",         3000,    60,     0,       0},
+        {"Kopi Sachet",        2500,    90,     0,       0},
+        {"Teh Celup Isi 30",   9000,    55,     0,       0},
+        {"Air Mineral 600ml",  3500,    100,    0,       0},
+        {"Air Mineral 1.5L",   6000,    90,     0,       0},
+        {"Susu UHT 1L",        17000,   40,     0,       0},
+        {"Susu Kental Manis",  12000,   25,     0,       0},
+        {"Pasta Gigi",         9000,    35,     0,       0},
+        {"Sikat Gigi",         6000,    40,     0,       0},
+        {"Shampoo",            16000,   30,     0,       0},
+        {"Sabun Cuci Piring",  13000,   45,     0,       0},
+        {"Sabun Mandi",        3500,    55,     0,       0}
+    };  
+    
     for (int i = 0; i < MAX; i++) {
         prod[i] = data[i];
     }
@@ -45,7 +44,7 @@ void tampilkanMenu(int *menu) {
     printf("\nSELAMAT DATANG DI DUROMART\n\n");
     printf("DAFTAR MENU\n");
     printf("1. Pesan\n");
-    printf("2. Cek Stok Barang\n");
+    printf("2. Cek Stok Produk\n");
     printf("3. Rekap Penjualan\n");
     while (*menu < 1 || *menu > 3) {
         printf("Pilih menu: ");
@@ -57,8 +56,8 @@ void tampilkanMenu(int *menu) {
     }
 }
 void cekStok(struct produk prod[]) {
-    printf("\nSTOK BARANG\n\n");
-    printf("KODE\tNAMA BARANG\t\tSTOK\tKODE\tNAMA BARANG\t\tSTOK\n");
+    printf("\nSTOK PRODUK\n\n");
+    printf("KODE\tNAMA PRODUK\t\tSTOK\tKODE\tNAMA PRODUK\t\tSTOK\n");
     for (int i = 0; i < MAX / 2; i++) {
         printf("%-7d %-23s %-6d| ", i + 1, prod[i].nama, prod[i].stok);
         printf("%-7d %-23s %d\n", i + 11, prod[i + 10].nama, prod[i + 10].stok);
@@ -88,7 +87,7 @@ void tambahStok(struct produk prod[], int *update, int *barang, int *stokBaru) {
 void rekap(struct produk prod[], int *totalRekap, int *rekapDiskon) {
     *totalRekap = 0;
     printf("\nREKAP PENJUALAN\n\n");
-    printf("KODE\tNAMA BARANG\t\tTERJUAL\t\tHARGA\t\tSUBTOTAL\n");
+    printf("KODE\tNAMA PRODUK\t\tTERJUAL\t\tHARGA\t\tSUBTOTAL\n");
     for (int i = 0; i < MAX; i++) {
         printf("%-7d %-23s %-15d Rp. %-11d Rp. %d\n", i + 1, prod[i].nama, prod[i].terjual, prod[i].harga, prod[i].harga * prod[i].terjual);
         *totalRekap += prod[i].harga * prod[i].terjual;
@@ -104,7 +103,7 @@ void namaKasir (char kasir[20]) {
 }
 void tampilkanProduk(struct produk prod[]) {
     printf("\nDAFTAR PRODUK\n\n");
-    printf("KODE\tNAMA BARANG\t\tHARGA\t\tKODE\tNAMA BARANG\t\tHARGA\n");
+    printf("KODE\tNAMA PRODUK\t\tHARGA\t\tKODE\tNAMA PRODUK\t\tHARGA\n");
     for (int i = 0; i < MAX / 2; i++) {
         printf("%-7d %-23s Rp. %-10d| ", i + 1, prod[i].nama, prod[i].harga);
         printf("%-7d %-23s Rp. %-12d\n", i + 11, prod[i + 10].nama, prod[i + 10].harga);
@@ -147,34 +146,24 @@ void hitungDiskon (struct produk prod[], int *total, int *diskon) {
     for (int i = 0; i < MAX; i++) {
         *total += prod[i].harga * prod[i].pesan;
     }
-    if (*total >= 500000 && *total < 1000000) {
-        *diskon = 0.05 * (*total);
+    if (*total >= 250000 && *total < 500000) {
+        *diskon = 5;
     }
-    else if (*total >= 1000000) {
-        *diskon = 0.1 * (*total);
+    else if (*total >= 500000) {
+        *diskon = 10;
     } 
 }
-void tampilkanDiskon (int *total, int *diskon) {
-    if (*total >= 500000 && *total < 1000000) {
-        printf("\nDISKON 5%%\t\t\t: Rp. %d", *diskon);
-    }
-    else if (*total >= 1000000) {
-        printf("\nDISKON 10%%\t\t\t: Rp. %d", *diskon);
-    }
-    else {
-        printf("\nDISKON 0%%\t\t\t: Rp. %d", *diskon);
-    } 
-}
-void totalPesanan (struct produk prod[], int *total, int *diskon) {
+void detailPesanan (struct produk prod[], int *total, int *diskon) {
     printf("\nDETAIL PESANAN\n");
     for (int i = 0; i < MAX; i++) {
         if(prod[i].pesan > 0)
-            printf("%2d. %s\n    %-2d x Rp.%-21d Rp. %d\n", i + 1, prod[i].nama, prod[i].pesan, prod[i].harga, prod[i].harga * prod[i].pesan);
+        printf("%2d. %s\n    %-2d x Rp.%-21d Rp. %d\n", i + 1, prod[i].nama, prod[i].pesan, prod[i].harga, prod[i].harga * prod[i].pesan);
     }
+    
     printf("---------------------------------------------");
     printf("\nSUBTOTAL\t\t\t: Rp. %d", *total);
-    tampilkanDiskon(total, diskon);
-    printf("\nTOTAL\t\t\t\t: Rp. %d", *total - *diskon);
+    printf("\nDISKON %d%%\t\t\t: Rp. %d", *diskon, (*total) * (*diskon)/100);
+    printf("\nTOTAL\t\t\t\t: Rp. %d", (*total) * (100 - *diskon)/100);
 }
 void beliLagi(int *tambah) {
     printf("\n\n1. Tambah\n");
@@ -234,11 +223,11 @@ void metodePembayaran (int *pembayaran) {
 void konfirPembayaran (int *uang, int *total, int *pembayaran, int *diskon) {
     *uang = 0;
     if (*pembayaran == 1) {
-        while (*uang < *total - *diskon) {
+        while (*uang < (*total) * (100 - *diskon)/100) {
             printf("Masukkan uang: ");
             scanf("%d", uang);
     
-            if (*uang < *total - *diskon) {
+            if (*uang < (*total) * (100 - *diskon)/100) {
                 printf("Uang tidak cukup, silahkan coba lagi.\n");
             }
         }
@@ -252,20 +241,21 @@ void konfirPembayaran (int *uang, int *total, int *pembayaran, int *diskon) {
                 printf("Pembayaran tidak valid, silahkan coba lagi.\n");
             }
         }
-        *uang = *total - *diskon;
     }
 }
 void pembayaran_kembalian (int *pembayaran, int *uang, int *total, int *diskon) {
     if (*pembayaran == 1) {
         printf("\nTUNAI\t\t\t\t: Rp. %d", *uang);
+        printf("\nKEMBALI\t\t\t\t: Rp. %d\n", *uang - (*total) * (100 - *diskon)/100);
     }
     else if (*pembayaran == 2) {
         printf("\nQRIS\t\t\t\t: Rp. %d", *total);
+        printf("\nKEMBALI\t\t\t\t: Rp. 0\n");
     }
     else if (*pembayaran == 3) {
         printf("\nKREDIT\t\t\t\t: Rp. %d", *total);
+        printf("\nKEMBALI\t\t\t\t: Rp. 0\n");
     }
-    printf("\nKEMBALI\t\t\t\t: Rp. %d\n", *uang - (*total - *diskon));
 }
 void tampilkanJam () {
     struct tm *jam;
@@ -275,26 +265,26 @@ void tampilkanJam () {
     jam = localtime(&waktu);
 
     printf("TANGGAL\t: %02d-%02d-%-14d JAM : %02d:%02d:%02d\n", 
-        jam->tm_mday,  jam->tm_mon + 1,  jam->tm_year + 1900,  
-        jam->tm_hour,  jam->tm_min,  jam->tm_sec);
+        jam->tm_mday, jam->tm_mon + 1, jam->tm_year + 1900,  
+        jam->tm_hour, jam->tm_min, jam->tm_sec);
 }
 void cetakStruk (struct produk prod[], int *total, int *uang, int *pembayaran, int *diskon, int *rekapDiskon, char kasir[20]) {
     printf("\n%28s", "DUROMART\n");
-    printf("%35s", "Jl. Tambak Asri No. 15\n");
-    printf("%33s", "Telp: 082186520961\n");
+    printf("%36s", "Jl. Sidotopo Wetan No. 15\n");
+    printf("%33s", "Telp: 085730565400\n");
     printf("---------------------------------------------\n");
     tampilkanJam();
     printf("KASIR\t: %s\n", kasir);
     printf("---------------------------------------------");
-    totalPesanan (prod, total, diskon);
+    detailPesanan (prod, total, diskon);
     pembayaran_kembalian(pembayaran, uang, total, diskon);
     printf("---------------------------------------------\n");
-    printf("  TERIMA KASIH TELAH BERBELANJA DI DUROMART  \n");
+    printf("  TERIMA KASIH TELAH BERBELANJA DI DUROMART  ");
 
     for (int i = 0; i < MAX; i++) {
         prod[i].pesan = 0;
     }
-    *rekapDiskon += *diskon;
+    *rekapDiskon += (*total) * (*diskon)/100;
 }
 
 int main() {
@@ -315,7 +305,7 @@ int main() {
     
     struct produk prod[MAX];
     listProduk(prod);
-
+    
     while (program == 1) {
         int tambah = 1;
         int menu = 0;
@@ -328,7 +318,7 @@ int main() {
             pilihProduk(&barang, prod);
             masukkanJumlah(prod, &jumlah, &barang);
             hitungDiskon (prod, &total, &diskon);
-            totalPesanan(prod, &total, &diskon);
+            detailPesanan(prod, &total, &diskon);
             while (tambah == 1) {
                 tambah = 0;
                 beliLagi(&tambah);
@@ -338,12 +328,12 @@ int main() {
                     pilihProduk(&barang, prod);
                     masukkanJumlah(prod, &jumlah, &barang);
                     hitungDiskon (prod, &total, &diskon);
-                    totalPesanan(prod, &total, &diskon);
+                    detailPesanan(prod, &total, &diskon);
                 }
                 else if (tambah == 2) {
                     hapusProduk(prod, &hapus, &jumlahHapus);
                     hitungDiskon (prod, &total, &diskon);
-                    totalPesanan(prod, &total, &diskon);
+                    detailPesanan(prod, &total, &diskon);
                     tambah = 1;
                 }
                 else if (tambah == 3) {
@@ -352,16 +342,16 @@ int main() {
                     cetakStruk (prod, &total, &uang, &pembayaran, &diskon, &rekapDiskon, kasir);
                 }
             }
-        } 
+        }
         else if (menu == 2) {
             cekStok(prod);
             tambahStok(prod, &update, &barang, &stokBaru);
-        } 
+        }
         else if (menu == 3) {
             rekap(prod, &totalRekap, &rekapDiskon);
         }
 
-        printf("\nKembali ke menu utama? (Masukkan 1 jika YA): ");
+        printf("\n\nKembali ke menu utama? (Masukkan 1 jika YA): ");
         scanf("%d", &program);
     }
 
